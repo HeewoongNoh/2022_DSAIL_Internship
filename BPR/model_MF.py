@@ -25,11 +25,10 @@ class BPR():
         self._V = np.random.normal(0, scale = 1.0/self._k, size = (self._num_items, self._k))
 
 
-    def train(self, epochs, num_bootstrap):
+    def train(self, epochs):
         '''
         training matrix factorization: update matrix(U,V)
         :param epochs: number of training iterations
-        :param num_bootstrap: how many times you bootstrap
         '''
         auc_list = []
         for epoch in range(1,epochs):
