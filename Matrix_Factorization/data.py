@@ -1,6 +1,5 @@
 # import library
 import pandas as pd
-import numpy as np
 from sklearn.model_selection import train_test_split
 import scipy.sparse as sp
 
@@ -24,7 +23,6 @@ def dataset_model_svd():
     # trainset = np.array(trainset, dtype=np.float64)
     # testset = np.array(testset, dtype=np.float64)
 
-    # print(trainset.shape,testset.shape)
     return trainset, testset
 # print(dataset_model_svd())
 
@@ -38,12 +36,10 @@ def dataset_model_torch():
     user_idx = {}
     for i, l in enumerate(movie['userId'].unique()):
         user_idx[l] = i
-    # print(user_idx)
 
     movie_idx = {}
     for i, l in enumerate(movie['movieId'].unique()):
         movie_idx[l] = i
-    # print(movie_idx)
 
     idx_user = {i: user for user, i in user_idx.items()}
     idx_movie = {i: item for item, i in movie_idx.items()}
