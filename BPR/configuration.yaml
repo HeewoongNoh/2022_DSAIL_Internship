@@ -1,0 +1,9 @@
+epochs: 50000
+num_bootstrap: 60000
+learning_rate: 0.1
+k: 40
+cost_parameter: 0.01
+batch_size: 64
+
+model:
+

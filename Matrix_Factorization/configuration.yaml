@@ -1,0 +1,8 @@
+epochs: 100
+learning_rate: 0.01
+k: 20
+cost_parameter: 0.01
+batch_size: 64
+
+model:
+  model_pytorch:"MF_torch"
