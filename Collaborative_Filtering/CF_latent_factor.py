@@ -20,8 +20,6 @@ from sklearn.decomposition import TruncatedSVD
 from scipy.sparse.linalg import svds
 warnings.filterwarnings("ignore")
 
-
-
 movie_dir = '../ml-latest-small'
 #Load dataset for TruncatedSVD
 rating_data = pd.read_csv(movie_dir+'/ratings.csv')
