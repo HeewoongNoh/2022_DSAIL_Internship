@@ -10,7 +10,7 @@ with open('configuration.yaml') as f:
 ################################When using BPR based on model_MF##################################
 train_data, test_data, gt_data = train, test, ml_100k
 model_MF = BPR(gt_data,train_data,test_data,config['k'],config['learning_rate'],config['cost_parameter'])
-model_MF.train(config['epochs'],config['num_bootstrap'])
+model_MF.train(config['epochs'])
 
 
 ################################When using BPR based on model_kNN#################################
