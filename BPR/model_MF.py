@@ -11,10 +11,9 @@ class BPR():
         :param test: test data
         :param k: number of factors
         :param learning_rate: learning_rate for SGD
-        :param cost_paramter: cost parameter for regularization( lambda)
-        :param epsilon:
+        :param cost_paramter: cost parameter for regularization(lambda)
         '''
-        self._gt_matrix = data
+        self._gt_matrix = data #ground truth dataset
         self._train = np.array(self.binary(train), dtype = np.float64)
         self._test = np.array(self.binary(test), dtype = np.float64)
         self._num_users, self._num_items = self._train.shape
