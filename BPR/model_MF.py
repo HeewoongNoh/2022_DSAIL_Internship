@@ -2,7 +2,7 @@ import numpy as np
 import random
 import time
 np.random.seed(2022)
-class BPR():
+class BPR_MF():
     def __init__(self, data, train, test, k, learning_rate, cost_parameter):
         '''
 

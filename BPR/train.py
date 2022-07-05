@@ -1,5 +1,5 @@
 import yaml
-from model_MF import BPR
+from model_MF import BPR_MF
 from data import ml_100k, train, test
 import matplotlib.pyplot as plt
 
@@ -9,7 +9,7 @@ with open('configuration.yaml') as f:
 
 ################################When using BPR based on model_MF##################################
 train_data, test_data, gt_data = train, test, ml_100k
-model_MF = BPR(gt_data,train_data,test_data,config['k'],config['learning_rate'],config['cost_parameter'])
+model_MF = BPR_MF(gt_data,train_data,test_data,config['k'],config['learning_rate'],config['cost_parameter'])
 model_MF.train(config['epochs'])
 
 
