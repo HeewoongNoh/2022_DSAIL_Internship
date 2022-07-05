@@ -29,7 +29,7 @@ def dataset_model_svd():
 # print(dataset_model_svd())
 
 
-# Using csr_matrix _referenced  choco9966.github
+# Using csr_matrix
 
 def dataset_model_torch():
 
