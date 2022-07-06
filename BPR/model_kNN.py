@@ -5,13 +5,12 @@ import random
 import time
 np.random.seed(2022)
 class BPR_kNN():
-    def __init__(self, data, train, test, k, learning_rate, reg_pos, reg_neg):
+    def __init__(self, data, train, test, learning_rate, reg_pos, reg_neg):
         '''
 
         :param data: Original data matrix
         :param train: train data
         :param test: test data
-        :param k: number of neighboring items
         :param learning_rate: learning_rate for SGD
         :param reg_pos,reg_neg: reg for updates C_il, reg for updates C_jl
 
@@ -20,7 +19,6 @@ class BPR_kNN():
         self._train = np.array(self.binary(train), dtype = np.float64)
         self._test = np.array(self.binary(test), dtype = np.float64)
         self._num_users, self._num_items = self._train.shape
-        self._k = k
         self._learning_rate = learning_rate
         # Changed code for using adaptive kNN for BPR learning.
         self._C =np.random.normal(0,scale = 1.0/self._num_items, size=(self._num_items,self._num_items) )
@@ -50,7 +48,7 @@ class BPR_kNN():
                 auc_list.append(AUC)
                 auc_end = time.time() - auc_time
                 print(f"AUC value: {AUC}----time:{auc_end}elapsed")
-
+                print(self._C)
         return auc_list
     #binarization for implicit dataset
     def binary(self,array):
@@ -80,6 +78,11 @@ class BPR_kNN():
 
         #Derivatives  w.r.t (u,i,j)
         #C_il, C_li update
+        '''
+        correlation function symmetric twice later?
+        '''
+
+
         self._C[i,l] += self._learning_rate * (sigmoid_value * 1 + self._reg_pos * self._C[i,l])
         self._C[l,i] += self._learning_rate * (sigmoid_value * 1 + self._reg_pos *self._C[l,i])
         #C_ij, C_ji update
