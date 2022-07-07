@@ -32,8 +32,7 @@ class BPR_kNN():
         training matrix factorization: update matrix(U,V)
         :param epochs: number of training iterations
         '''
-        #Asymetric matrix and matrix[i][i] = 0 remove self correlation
-        np.fill_diagonal(self._C,0)
+
         auc_list = []
         for epoch in range(1,epochs):
             start = time.time()
@@ -78,10 +77,6 @@ class BPR_kNN():
 
         #Derivatives  w.r.t (u,i,j)
         #C_il, C_li update
-        '''
-        correlation function symmetric twice later?
-        '''
-
 
         self._C[i,l] += self._learning_rate * (sigmoid_value * 1 + self._reg_pos * self._C[i,l])
         self._C[l,i] += self._learning_rate * (sigmoid_value * 1 + self._reg_pos *self._C[l,i])
