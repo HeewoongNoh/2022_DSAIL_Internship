@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 
-# pass in column names for each CSV
 
 ml_dir = 'ml-100k/ml-100k'
 r_cols = ['user_id', 'movie_id', 'rating', 'unix_timestamp']
@@ -24,6 +23,10 @@ for row in train_df.itertuples():
 
 for row in test_df.itertuples():
     test[row[1] - 1, row[2] - 1] = row[3]
+
+
+
+
 
 
 
