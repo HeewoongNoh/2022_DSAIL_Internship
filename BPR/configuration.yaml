@@ -8,5 +8,5 @@ batch_size: 64
 epsilon: 0.0000001
 reg_pos : 0.01
 reg_neg : 0.02
-model:
+
 
