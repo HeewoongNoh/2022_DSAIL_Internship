@@ -1,9 +1,11 @@
 import yaml
+import time
+from data import ml_100k, train, test
 from model_MF import BPR_MF
 from model_kNN import BPR_kNN
-from data import ml_100k, train, test
+from model_WRMF import WRMF
 import matplotlib.pyplot as plt
-import time
+
 #Reading configuration yaml file for hyperparamters
 with open('configuration.yaml') as f:
     config = yaml.safe_load(f)
@@ -12,7 +14,7 @@ with open('configuration.yaml') as f:
 train_data, test_data, gt_data = train, test, ml_100k
 model_MF = BPR_MF(gt_data,train_data,test_data,config['k'],config['learning_rate'],config['cost_parameter'])
 model_MF.train(config['epochs'])
-'''
+
 
 ################################When using BPR based on model_kNN#################################
 train_data, test_data, gt_data = train, test, ml_100k
@@ -21,5 +23,11 @@ model_kNN = BPR_kNN(gt_data,train_data,test_data,config['learning_rate'],config[
 model_kNN.train(config['epochs'])
 end = time.time() - start
 print(f'total{end} time elapsed')
-
-
+'''
+################################When using BPR based on model_WRMF###############################
+train_data, test_data, gt_data = train, test, ml_100k
+start = time.time()
+model_WRMF = WRMF(gt_data,train_data,test_data,config['k'],config['alpha'],config['cost_parameter'])
+model_WRMF.train(config['epochs'])
+end = time.time() - start
+print(f'total{end} time elapsed')

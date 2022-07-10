@@ -27,18 +27,3 @@ for row in test_df.itertuples():
 
 
 
-
-
-
-print(train[1].nonzero())
-print("="*30)
-print(train[1].nonzero()[0])
-print("="*30)
-x=train[1].nonzero()[0]
-print(x)
-import random
-i = random.choice(x)
-print(i)
-print(np.where(x == i))
-x_new = np.delete(x,np.where(x == i))
-print(x_new)

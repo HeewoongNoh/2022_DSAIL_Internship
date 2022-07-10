@@ -1,10 +1,11 @@
-epochs: 50000
+epochs: 100
 num_bootstrap: 60000
 learning_rate: 0.1
 k: 40
+alpha: 40
 cost_parameter: 0.01
 batch_size: 64
-
+epsilon: 0.0000001
 reg_pos : 0.01
 reg_neg : 0.02
 model:

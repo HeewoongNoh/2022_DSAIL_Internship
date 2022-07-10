@@ -6,14 +6,14 @@ class BPR_MF():
     def __init__(self, data, train, test, k, learning_rate, cost_parameter):
         '''
 
-        :param data: Original data matrix
+        :param data: Original data matrix(ground truth dataset)
         :param train: train data
         :param test: test data
         :param k: number of factors
         :param learning_rate: learning_rate for SGD
         :param cost_paramter: cost parameter for regularization(lambda)
         '''
-        self._gt_matrix = data #ground truth dataset
+        self._gt_matrix = data
         self._train = np.array(self.binary(train), dtype = np.float64)
         self._test = np.array(self.binary(test), dtype = np.float64)
         self._num_users, self._num_items = self._train.shape
