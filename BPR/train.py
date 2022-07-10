@@ -9,6 +9,9 @@ import matplotlib.pyplot as plt
 #Reading configuration yaml file for hyperparamters
 with open('configuration.yaml') as f:
     config = yaml.safe_load(f)
+
+# YOU CAN CHOOSE BPR_MR, BRP_kNN, WRMF WHICH RANKED IN TOP3, METRIC: AUC
+
 '''
 ################################When using BPR based on model_MF##################################
 train_data, test_data, gt_data = train, test, ml_100k
