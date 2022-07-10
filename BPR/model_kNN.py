@@ -4,6 +4,7 @@ import numpy as np
 import random
 import time
 np.random.seed(2022)
+#BPR_kNN
 class BPR_kNN():
     def __init__(self, data, train, test, learning_rate, reg_pos, reg_neg):
         '''
