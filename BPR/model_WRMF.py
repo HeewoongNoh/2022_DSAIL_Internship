@@ -24,17 +24,17 @@ class WRMF():
         self._num_users, self._num_items = self._train.shape
         self._k = k
         self._cost_parameter = cost_parameter
+        self._X = np.random.normal(0, scale = 1.0/self._k, size = (self._num_users, self._k))
+        self._Y = np.random.normal(0, scale = 1.0/self._k, size = (self._num_items, self._k))
         #changed codes for using Weighted regularized matrix factorization for BPR
         self._alpha = alpha
         self._C_ui = scipy.sparse.csr_matrix(self._train>0,dtype=np.float32)
-        if self._alpha !=1.0:
-            self._C_ui =self._alpha*self._C_ui
+        if self._alpha != 1.0:
+            self._C_ui = self._alpha * self._C_ui
 
     #alternating least squares
     def train(self, epochs):
         auc_list = []
-        self._X = np.random.normal(0, scale = 1.0/self._k, size = (self._num_users, self._k))
-        self._Y = np.random.normal(0, scale = 1.0/self._k, size = (self._num_items, self._k))
         C_iu = self._C_ui.T.tocsr()
 
         for epoch in range(epochs):
