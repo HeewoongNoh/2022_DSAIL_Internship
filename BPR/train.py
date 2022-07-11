@@ -1,6 +1,6 @@
 import yaml
 import time
-from data import ml_100k, train, test
+from dataset import ml_100k, train, test
 from model_MF import BPR_MF
 from model_kNN import BPR_kNN
 from model_WRMF import WRMF
