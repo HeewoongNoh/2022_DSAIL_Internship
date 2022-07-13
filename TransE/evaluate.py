@@ -27,22 +27,4 @@ def mrr(preds, gt_idx):
         r_ranks = torch.reciprocal(ranks)
         mrr = torch.sum(r_ranks).data / gt_idx.size(0)
     return mrr.item()
-def get_mrr(indices, targets):
-    """
-    Calculates the MRR score for the given predictions and targets
-    Args:
-        indices (Bxk): torch.LongTensor. top-k indices predicted by the model.
-        targets (B): torch.LongTensor. actual target indices.
 
-    Returns:
-        mrr (float): the mrr score
-    """
-
-    tmp = targets.view(-1, 1)
-    targets = tmp.expand_as(indices)
-    hits = (targets == indices).nonzero()
-    ranks = hits[:, -1] + 1
-    ranks = ranks.float()
-    rranks = torch.reciprocal(ranks)
-    mrr = torch.sum(rranks).data / targets.size(0)
-    return mrr.item()
