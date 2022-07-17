@@ -7,8 +7,9 @@
  I used 3 methods(MF, kNN, WRMF) using BPR learner, metric: AUC  
  
 ## model_MF (matrix factorization)  
-to be uploaded
-
+<img width="437" alt="bpr_mf_processing" src="https://user-images.githubusercontent.com/62690984/179381580-e3acd4c9-2610-4d62-83ed-092e23878f54.png">  
+Same epoch with model_kNN (50000, it can be seen as much times due to bootstramp sampling), model_MF AUC score will be higher with more epoch.  
+It is not in the overfitting.  
 
 ## model_kNN (k-Nearest Neighbor)
 -including bootstrap sampling  
