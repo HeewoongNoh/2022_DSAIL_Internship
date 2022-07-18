@@ -14,7 +14,7 @@ I tried 2 ways to solve nan loss
 
 2) use loss when it is not the NAN loss  
 
-By 2), i could nan loss problem.  
+By 2), i could solve nan loss problem but i have trouble with training model.  
 ## Training?     
 ![epoch100_losses_transe](https://user-images.githubusercontent.com/62690984/178979987-1d37456b-9190-4e5e-b785-dd07596628a1.png)   
 (Wihtout CUDA, there is a limitation on the number of epochs)  
