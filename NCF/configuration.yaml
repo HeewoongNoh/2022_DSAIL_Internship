@@ -1,0 +1,10 @@
+learning_rate: 0.001
+epochs: 30
+gmf_dim: 32
+mlp_dim: 32
+num_layers: 3
+num_ng: 4
+batch_size: 256
+test_num_ng: 99
+top_k: 10
+alpha: 0.5
