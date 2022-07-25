@@ -7,7 +7,7 @@ from model import Wide_Deep,Wide,Deep
 from dataset import df_wide_pro,df_deep,df_wide
 
 # Setting seed
-torch.manual_seed(6022)
+torch.manual_seed(2023)
 
 # Device
 device = 'gpu' if torch.cuda.is_available() else 'cpu'
@@ -36,16 +36,16 @@ test_tensor = torch.FloatTensor(Y_test)
 
 
 # Load wide, deep, wide & deep model has best AUC score from training.
-wide_deep_model = Wide_Deep(df_wide_pro,df_deep).to(device)
-state_dict_wd = torch.load('checkpoints/Wide_Deep_Model_Epoch_13_AUC_0.6803')
+wide_deep_model = Wide_Deep().to(device)
+state_dict_wd = torch.load('checkpoints/Wide_Deep_Model_Epoch_3_AUC_0.6923')
 wide_deep_model.load_state_dict(state_dict_wd)
 
-wide_model = Wide(df_wide_pro).to(device)
-state_dict_wide = torch.load('checkpoints/Wide_Model_Epoch_28_AUC_0.6635')
+wide_model = Wide().to(device)
+state_dict_wide = torch.load('checkpoints/Wide_Model_Epoch_23_AUC_0.6780')
 wide_model.load_state_dict(state_dict_wide)
 
-deep_model = Deep(df_deep).to(device)
-state_dict_deep = torch.load('checkpoints/Deep_Model_Epoch_4_AUC_0.6586')
+deep_model = Deep().to(device)
+state_dict_deep = torch.load('checkpoints/Deep_Model_Epoch_3_AUC_0.6529')
 deep_model.load_state_dict(state_dict_deep)
 
 

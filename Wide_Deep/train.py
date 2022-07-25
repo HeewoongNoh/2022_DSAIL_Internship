@@ -8,7 +8,7 @@ import torch.optim as optim
 from torch.utils.data import DataLoader
 from dataset import WD_Dataset, Wide_Dataset, Deep_Dataset, df_wide_pro,df_deep,df_wide
 from model import Wide_Deep, Wide, Deep
-from collections import defaultdict
+from sklearn.model_selection import train_test_split
 from sklearn.metrics import roc_auc_score, roc_curve
 
 # Setting seed
@@ -32,22 +32,41 @@ length = 46361 # len(train_df)
 # X_train_wide = df_wide.values[:len(train_df),:]
 # X_test_wide= df_wide.values[len(train_df):,:]
 
-#If you want to use df_wide_promotionID.pkl for training wide model
-X_train_wide = df_wide_pro.values[:length,:]
-X_test_wide= df_wide_pro.values[length:,:]
+# If you want to use df_wide_promotionID.pkl for training wide model
+# X_train_wide = df_wide_pro.values[:length,:]
+# X_test_wide= df_wide_pro.values[length:,:]
+#
+# # Dataset for deep
+# X_train_deep = df_deep.values[:length,:]
+# X_test_deep= df_deep.values[length:,:]
+#
+# Y_train = Y[:length]
+# Y_test = Y[length:]
+#
+# #Fixed label tensor (Target)
+# test_wide_tensor = torch.FloatTensor(X_test_wide)
+# test_deep_tensor = torch.LongTensor(X_test_deep)
+# test_tensor = torch.FloatTensor(Y_test)
 
-# Dataset for deep
-X_train_deep = df_deep.values[:length,:]
-X_test_deep= df_deep.values[length:,:]
+#for validation
+df_wide_pro_valid = df_wide_pro.values[:length,:]
+df_deep_valid = df_deep.values[:length,:]
+Y = Y[:length]
+X_train_deep1, X_test_deep1 = train_test_split(df_deep_valid, test_size=0.2, random_state=2023)
+X_train_wide1, X_test_wide1 = train_test_split(df_wide_pro_valid,test_size=0.2,random_state=2023)
+Y_train1, Y_test1 = train_test_split(Y, test_size=0.2, random_state=2023)
+print(X_train_deep1.shape)
+print(Y_train1.shape)
+print(Y_test1.shape)
+X_train_deep = X_train_deep1
+X_train_wide = X_train_wide1
+Y_train = Y_train1
+
+test_wide_tensor = torch.FloatTensor(X_test_wide1)
+test_deep_tensor = torch.LongTensor(X_test_deep1)
+test_tensor = torch.FloatTensor(Y_test1)
 
 # Answer dataset
-Y_train = Y[:length]
-Y_test = Y[length:]
-
-#Fixed label tensor (Target)
-test_wide_tensor = torch.FloatTensor(X_test_wide)
-test_deep_tensor = torch.LongTensor(X_test_deep)
-test_tensor = torch.FloatTensor(Y_test)
 
 
 ########################### " Wide & Deep Model " #################################
@@ -55,9 +74,10 @@ test_tensor = torch.FloatTensor(Y_test)
 train_dataset = WD_Dataset(X_wide_tensor = torch.FloatTensor(X_train_wide),
                            X_deep_tensor = torch.LongTensor(X_train_deep),Y_tensor = torch.FloatTensor(Y_train))
 train_loader = DataLoader(dataset = train_dataset, batch_size= config['batch_size'], shuffle=True)
-model = Wide_Deep(df_wide_pro,df_deep).to(device)
+model = Wide_Deep().to(device)
 optimizer = optim.Adam(model.parameters(), lr=config['learning_rate'], betas=(0.9, 0.999),
                        eps=1e-08, weight_decay=config['weight_decay'])
+# optimizer = optim.Adam(model.parameters(), lr=config['learning_rate'], betas=(0.9, 0.999), eps=1e-08)
 criterion = nn.BCELoss()
 # criterion = nn.BCEWithLogitsLoss()
 
@@ -100,9 +120,10 @@ print(f'Wide_Deep_Model_Best_AUC:{sorted(auc_wide_deep)[-1]:.4f}')
 model_name = 'Wide'
 train_dataset_wide = Wide_Dataset(X_wide_tensor=torch.FloatTensor(X_train_wide), Y_tensor=torch.FloatTensor(Y_train))
 train_loader_wide = DataLoader(dataset=train_dataset_wide, batch_size=config['batch_size'], shuffle=True)
-model = Wide(df_wide_pro).to(device)
+model = Wide().to(device)
 
 optimizer = optim.Adam(model.parameters(), lr=config['learning_rate'], betas=(0.9, 0.999), eps=1e-08, weight_decay=config['weight_decay'])
+# optimizer = optim.Adam(model.parameters(), lr=config['learning_rate'], betas=(0.9, 0.999), eps=1e-08)
 criterion = nn.BCELoss()
 # criterion = nn.BCEWithLogitsLoss()
 
@@ -149,9 +170,10 @@ print(f'Wide_Model_Best_AUC:{sorted(auc_wide)[-1]:.4f}')
 model_name = 'Deep'
 train_dataset_deep = Deep_Dataset(X_deep_tensor=torch.LongTensor(X_train_deep), Y_tensor=torch.FloatTensor(Y_train))
 train_loader_deep = DataLoader(dataset=train_dataset_deep, batch_size=config['batch_size'], shuffle=True)
-model = Deep(df_deep).to(device)
+model = Deep().to(device)
 
-optimizer = optim.Adam(model.parameters(), lr=config['learning_rate'], betas=(0.9, 0.999), eps=1e-08, weight_decay=0.05)
+optimizer = optim.Adam(model.parameters(), lr=config['learning_rate'], betas=(0.9, 0.999), eps=1e-08, weight_decay=config['weight_decay'])
+# optimizer = optim.Adam(model.parameters(), lr=config['learning_rate'], betas=(0.9, 0.999), eps=1e-08)
 criterion = nn.BCELoss()
 # criterion = nn.BCEWithLogitsLoss()
 auc_deep = []

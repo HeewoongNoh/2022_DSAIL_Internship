@@ -15,7 +15,7 @@ num_purchase = len(np.unique(df_deep.user_purchase_level))
 
 # Wide & Deep model
 class Wide_Deep(nn.Module):
-    def __init__(self, wide_data, deep_data):
+    def __init__(self):
         super().__init__()
 
         # Deep Model
@@ -29,7 +29,7 @@ class Wide_Deep(nn.Module):
         self.purchase_embed_layer = nn.Embedding(num_purchase, embedding_dim=16)
         self.len_cont = 8
         # 308 comes from continuous features dim + sum of embedding features embedding dimensions, 8+300
-        self.linear_layer_1 = nn.Linear(in_features=88, out_features=64)
+        self.linear_layer_1 = nn.Linear(in_features=80+self.len_cont, out_features=64)
         self.linear_layer_2 = nn.Linear(in_features=64, out_features=32)
         self.linear_layer_3 = nn.Linear(in_features=32, out_features=16)
 
@@ -71,7 +71,7 @@ class Wide_Deep(nn.Module):
 
 #Wide model
 class Wide(nn.Module):
-    def __init__(self, wide_data):
+    def __init__(self):
         super().__init__()
         self.linear_wide = nn.Linear(in_features=df_wide_pro.shape[1], out_features=1)
         self.sigmoid = nn.Sigmoid()
@@ -89,7 +89,7 @@ class Wide(nn.Module):
 
 #Deep model
 class Deep(nn.Module):
-    def __init__(self, deep_data):
+    def __init__(self):
         super().__init__()
 
         # Deep Model
@@ -103,7 +103,7 @@ class Deep(nn.Module):
         self.purchase_embed_layer = nn.Embedding(num_purchase, embedding_dim=16)
         self.len_cont = 8
         # 308 comes from continuous features dim + sum of embedding features embedding dimensions, 8+300
-        self.linear_layer_1 = nn.Linear(in_features=88, out_features=64)
+        self.linear_layer_1 = nn.Linear(in_features=80+self.len_cont, out_features=64)
         self.linear_layer_2 = nn.Linear(in_features=64, out_features=32)
         self.linear_layer_3 = nn.Linear(in_features=32, out_features=16)
         self.linear_final = nn.Linear(in_features=16, out_features=1)
