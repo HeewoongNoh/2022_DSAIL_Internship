@@ -35,12 +35,31 @@ class FB15K(data.Dataset):
         return len(self.data)
 
     # return (head id, relation id, tail id)
-    def __getitem__(self,idx):
+    def __getitem__(self, idx):
         head, relation, tail = self.data[idx]
-        head_id = self.e_to_id[head]
-        relation_id = self.r_to_id[relation]
-        tail_id = self.e_to_id[tail]
+        head_id = self._mapping(head, self.e_to_id)
+        relation_id = self._mapping(relation, self.r_to_id)
+        tail_id = self._mapping(tail, self.e_to_id)
         return head_id, relation_id, tail_id
 
+
+    @staticmethod
+    def _mapping(key, mapping):
+        try:
+            return mapping[key]
+        except KeyError:
+            return len(mapping)
+
+
+
+
+
+
+    # def __getitem__(self,idx):
+    #     head, relation, tail = self.data[idx]
+    #     head_id = self.e_to_id[head]
+    #     relation_id = self.r_to_id[relation]
+    #     tail_id = self.e_to_id[tail]
+    #     return head_id, relation_id, tail_id
 # print(create_mapping('FB15K-237/train.txt'))
 

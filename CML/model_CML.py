@@ -17,7 +17,7 @@ torch.manual_seed(2023)
 with open('configuration.yaml') as f:
     config = yaml.safe_load(f)
 
-#Dataset from dataset.py
+#Dataset from dataset_guo.py
 train = trainset
 test = testset
 item = movie_feature

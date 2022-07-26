@@ -21,16 +21,17 @@ model_MF.train(config['epochs'])
 end = time.time() - start
 print(f'total{end} time elapsed')
 
-################################When using BPR based on model_kNN#################################
-start = time.time()
-model_kNN = BPR_kNN(gt_data,train_data,test_data,config['learning_rate'],config['reg_pos'],config['reg_neg'])
-model_kNN.train(config['epochs'])
-end = time.time() - start
-print(f'total{end} time elapsed')
 
-################################When using BPR based on model_WRMF###############################
-start = time.time()
-model_WRMF = WRMF(gt_data,train_data,test_data,config['k'],config['alpha'],config['cost_parameter'])
-model_WRMF.train(config['epochs'])
-end = time.time() - start
-print(f'total{end} time elapsed')
+# ###############################When using BPR based on model_kNN#################################
+# start = time.time()
+# model_kNN = BPR_kNN(gt_data,train_data,test_data,config['learning_rate'],config['reg_pos'],config['reg_neg'])
+# model_kNN.train(config['epochs'])
+# end = time.time() - start
+# print(f'total{end} time elapsed')
+
+# ###############################When using BPR based on model_WRMF###############################
+# start = time.time()
+# model_WRMF = WRMF(gt_data,train_data,test_data,config['k'],config['alpha'],config['cost_parameter'])
+# model_WRMF.train(config['epochs'])
+# end = time.time() - start
+# print(f'total{end} time elapsed')

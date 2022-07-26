@@ -1,6 +1,6 @@
-epochs: 200
+epochs: 50
 batch_size: 128
-learning_rate: 0.001
+learning_rate: 0.01
 dim: 100
 margin: 1
 norm: 1

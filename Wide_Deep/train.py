@@ -96,12 +96,12 @@ for epoch in range(config['epochs']):
         # If you want to use L1 reg instead of l2 reg.
         # Set the adam's weight decay:0
         # Compute L1 loss
-        # l1_weight =0.01
-        # l1_parameters = []
-        # for parameter in model.parameters():
-        #     l1_parameters.append(parameter.reshape(-1))
-        # l1 = l1_weight * model.compute_L1_loss(torch.cat(l1_parameters))
-        # loss += l1
+        l1_weight =0.005
+        l1_parameters = []
+        for parameter in model.parameters():
+            l1_parameters.append(parameter.reshape(-1))
+        l1 = l1_weight * model.compute_L1_loss(torch.cat(l1_parameters))
+        loss += l1
         loss.backward()
         optimizer.step()
         total_loss += loss
@@ -143,12 +143,12 @@ for epoch in range(config['epochs']):
         # If you want to use L1 reg instead of l2 reg.
         # Set the adam's weight decay:0
         # Compute L1 loss
-        # l1_weight =0.01
-        # l1_parameters = []
-        # for parameter in model.parameters():
-        #     l1_parameters.append(parameter.reshape(-1))
-        # l1 = l1_weight * model.compute_L1_loss(torch.cat(l1_parameters))
-        # loss += l1
+        l1_weight =1
+        l1_parameters = []
+        for parameter in model.parameters():
+            l1_parameters.append(parameter.reshape(-1))
+        l1 = l1_weight * model.compute_L1_loss(torch.cat(l1_parameters))
+        loss += l1
 
         loss.backward()
         optimizer.step()
@@ -191,12 +191,12 @@ for epoch in range(config['epochs']):
         # If you want to use L1 reg instead of l2 reg.
         # Set the adam's weight decay:0
         # Compute L1 loss
-        # l1_weight =0.01
-        # l1_parameters = []
-        # for parameter in model.parameters():
-        #     l1_parameters.append(parameter.reshape(-1))
-        # l1 = l1_weight * model.compute_L1_loss(torch.cat(l1_parameters))
-        # loss += l1
+        l1_weight =1
+        l1_parameters = []
+        for parameter in model.parameters():
+            l1_parameters.append(parameter.reshape(-1))
+        l1 = l1_weight * model.compute_L1_loss(torch.cat(l1_parameters))
+        loss += l1
 
         loss.backward()
         optimizer.step()

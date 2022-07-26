@@ -48,7 +48,6 @@ class BPR_kNN():
                 auc_list.append(AUC)
                 auc_end = time.time() - auc_time
                 print(f"AUC value: {AUC}----time:{auc_end}elapsed")
-                print(self._C)
         return auc_list
     #binarization for implicit dataset
     def binary(self,array):

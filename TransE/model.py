@@ -24,9 +24,11 @@ class transE(nn.Module):
         uniform_normalize = 6 / np.sqrt(self.dim)
         r_embedding.weight.data.uniform_(uniform_normalize, uniform_normalize)
         #Normalize
-        r_norm = torch.norm(r_embedding.weight.data, p=1, dim=1, keepdim=True)
-        r_embedding.weight.data = r_embedding.weight.data / r_norm
+        # r_norm = torch.norm(r_embedding.weight.data[:-1, :], p=1, dim=1, keepdim=True)
+        # r_embedding.weight.data = r_embedding.weight.data[:-1, :] / r_norm
+        r_embedding.weight.data[:-1, :].div_(r_embedding.weight.data[:-1,:].norm(p=1, dim=1, keepdim=True))
         return r_embedding
+
 
     def init_entity(self):
         e_embedding = nn.Embedding(num_embeddings=self.e_count + 1, embedding_dim=self.dim, padding_idx=self.e_count)
@@ -36,8 +38,9 @@ class transE(nn.Module):
 
     def forward(self, pos_triplets, neg_triplets):
         # Normalize entity in the loop section, not in initialization section
-        e_norm = torch.norm(self.e_embedding.weight.data, p=1, dim=1, keepdim=True)
-        self.e_embedding.weight.data = self.e_embedding.weight.data / e_norm
+        # e_norm = torch.norm(self.e_embedding.weight.data[:-1, :], p=1, dim=1, keepdim=True)
+        # self.e_embedding.weight.data = self.e_embedding.weight.data[:-1, :] / e_norm
+        self.e_embedding.weight.data[:-1, :].div_(self.e_embedding.weight.data[:-1, :].norm(p=1, dim=1, keepdim=True))
         if pos_triplets.size()[1] == 3:
             pos_distance = self.distance(pos_triplets)
         if neg_triplets.size()[1] == 3:
