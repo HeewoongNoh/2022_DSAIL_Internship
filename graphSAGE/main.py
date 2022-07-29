@@ -1,7 +1,11 @@
 # Import library
 import yaml
 import torch
+<<<<<<< HEAD
 from train import train, test
+=======
+from train import train
+>>>>>>> origin/master
 from torch_geometric.datasets import Planetoid
 import matplotlib.pyplot as plt
 
