@@ -3,12 +3,12 @@
 ## Data  
 __Task Purpose:__ Classification whether user redeems the voucher (label: 0 or 1)  
 I used "Lazada (Alibaba Group) e-commerce voucher redeem dataset which sampled from large scaled production dataset.    
-You can get dataframe from  "kdd_data.pkl.zip".(from references).  
+You can get original dataframe "kdd_data.pkl.zip" repo/data_files.  
 The dataset contains three dataframes corresponding users' voucher collection logs, related user behavior logs and related item features stored in a pickle  (.pkl) file .  
 I made these dataframes to one, and preprocessed for using Wide, Deep model. (with Data_Preprocessing.ipynb)  
 You can also get from df file (train, test) from my github/repository/data_files.  
-"df_deep_final.pkl" for deep model, "df_wide_encoding_promotionID" that one-hot-encoded promotion ID feature, "df_wide_final.pkl" is not one-hot-encoded for promotion ID feature.  
-
+"df_deep_final.pkl" for deep model, "df_wide_encoding_promotionID" that one-hot-encoded promotion ID feature, "df_wide_final.pkl" is not one-hot-encoded for promotion ID feature.    
+You can just start my code with above ".pkl" files.
 
 ## Model
 ### Wide component  
