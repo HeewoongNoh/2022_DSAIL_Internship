@@ -1,0 +1,7 @@
+lr: 0.01
+batch_size: 32
+weight_decay: 0.005
+dropout: 0.5
+num_layers: 2
+hidden_dim: 32
+epochs: 500
