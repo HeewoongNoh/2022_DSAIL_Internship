@@ -1,0 +1,8 @@
+hidden_dim: 512
+num_layers: 2
+latent_dim: 32
+lr: 0.001
+batch_size: 64
+epochs: 20
+weight_decay: 0.0005
+
