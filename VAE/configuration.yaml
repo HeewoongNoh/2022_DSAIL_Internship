@@ -4,4 +4,4 @@ epochs: 20
 weight_decay: 0.0005
 hidden_dim: 512
 num_layers: 2
-latent_dim: 64
+latent_dim: 20
