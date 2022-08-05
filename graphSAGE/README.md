@@ -12,7 +12,7 @@ For using LSTM which is not a permutation invariant function, applying random pe
 LSTM can give an advantage of larger expressive capability  
 ## Experiment & Result -Node Classification-
 ### CORA Dataset (standard citation network benchmark dataset)
-I tried to implement general GNN including graphSAGE layer which uses mean aggregator
+I tried to implement general GNN including graphSAGE layer which uses mean aggregator.  
 For the Cora dataset, there are 2708 nodes, 5429 edges, 7 prediction classes for nodes, and 1433 features per node.  
 Epoch: 500, learning_rate: 0.01  
 ![github_training_process](https://user-images.githubusercontent.com/62690984/182365698-7fa49ebf-72bf-45f9-a34f-f066a8b1518e.png)  
