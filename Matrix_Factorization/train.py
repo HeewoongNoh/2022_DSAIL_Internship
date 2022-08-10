@@ -8,7 +8,6 @@ from tqdm import tqdm
 #Reading configuration yaml file for hyperparamters
 with open('configuration.yaml') as f:
     config = yaml.safe_load(f)
-#argparse 또는 yaml로 model 선택하는 부분 공부 진행 중...!
 
 #==============================When using model_svd==================================
 
@@ -65,32 +64,4 @@ class Trainer(object):
 
 Trainer(dataset_model_torch(),MF_torch(dataset_model_torch(),610,9724,20),config)
 #==============================When using model_als==================================
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-'''
-
-#model selection
-    def _get_model(self):
-        try:
-            model = self.model_dict[self.model]
-        except:
-            raise(f'Wrong name, give proper name from dict')
-'''
 
