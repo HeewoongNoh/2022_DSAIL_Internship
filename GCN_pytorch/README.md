@@ -1,4 +1,4 @@
-## Semi-Supervised Classification with Graph Convolutional Networks(Thomas N.Kipf & Max Welling, 2016)  
+## Semi-Supervised Classification with Graph Convolutional Networks(Thomas N.Kipf & Max Welling, ICLR 2017)  
 Scalable approach for semi-suprvised learning on graph-structured data which is based on an efficient variant of CNN that operate directly on graphs  
 -First-order approximation of localized spectral filters on graph  
 -GCN can encode both graph sturcture and node features in a way useful for semi-supervised classification  
